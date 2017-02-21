@@ -5,7 +5,6 @@ import sys
 import time
 from threading import Thread
 
-
 class Player(pygame.sprite.Sprite):
     '''The class that holds the main player, and controls how they jump.
     nb. The player doens't move left or right, the world moves around them'''
@@ -317,9 +316,12 @@ background = pygame.transform.scale(pygame.image.load(background_images[0]), (sc
 bg_1_x = -100
 bg_2_x = screen_x - 100
 
+# For pausing-the-game feature by Minghua Liu
+toPause = True
+
 while not finished:
 
-    # blank screen
+ # blank screen
     screen.fill((0, 0, 0))
 
     # check events
@@ -353,7 +355,21 @@ while not finished:
 
     if key_state[K_SPACE]:
         player.jump(jump_speed)
-
+	
+	# --------------Pausing-the-game feature; by Minghua Liu start---------------
+	if key_state[K_p]:
+		while toPause:
+			for event in pygame.event.get():
+				if event.type == QUIT:
+					finished = True
+			key_state = pygame.key.get_pressed()
+			if key_state[K_c]:
+				print("I'm in second p")
+				break
+			time.sleep(.1)
+		
+	# --------------Pausing-the-game feature; by Minghua Liu end---------------
+	
     # this is gravity affecting the player
     player.move_y()
 
@@ -373,6 +389,8 @@ while not finished:
     if doom.collided(player.rect):
         print("You Lose!")
         finished = True
+	
+	# check invincibility
     for b in button_plain:
         if b.collided(player.rect):
             b.press(player)
