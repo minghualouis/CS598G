@@ -1,0 +1,37 @@
+The following a is a list of attributions for the various images/sprites/sounds used
+All images and sounds were either taken from OpemGameArt.org or adapated from resources found there.
+
+Images:
+
+background0.png:
+© 2012-2013 Julien Jorge <julien.jorge@stuff-o-matic.com>
+CC-BY-SA 3.0
+
+Backgrounds for 2D Platformers:
+background1.png:
+adpated from Zeyu Ren's "snow.png"
+CC-BY 3.0
+
+Platformer Tiles:
+buttons: red_pre.png, red_dep.png, yel_dep.png, yel_pre.png, green_dep.png, green_pre.png:
+www.kenney.nl
+CC0, Public domain
+
+flames: flame1.png, flame2.png, flame3.png, flame4.png:
+Zabin and Jetrl from OGA
+CC-BY-SA 3.0
+
+LPC Heroine, Lidia the protagonist of Unsealed: Whispers of Wisdom.
+lidia_normal.png & lidia_super.png
+posted by Yamilian, no attribution instructions
+(note: lidia_super.png is a recoloring by Chase made in GIMP)
+CC-BY-SA 3.0 or GPL3.0
+
+
+Sounds:
+
+Cute Cartoon Jump Sound Effect:
+qubodup-cffork-ccby3-jump.ogg:
+Boing Raw Copyright 2005 cfork <http://freesound.org/people/cfork/> 
+Boing Jump Copyright 2012 Iwan Gabovitch <http://qubodup.net>
+CC-BY 3.0
