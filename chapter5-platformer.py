@@ -2,6 +2,9 @@ import pygame
 from pygame.locals import *
 from random import randint
 import sys
+# For pausing-the-game feature by Minghua Liu
+#import thread
+import time
 
 class Player(pygame.sprite.Sprite):
 	'''The class that holds the main player, and controls how they jump.
@@ -203,6 +206,9 @@ background = pygame.transform.scale(pygame.image.load(background_image), (screen
 bg_1_x = -100
 bg_2_x = screen_x - 100
 
+# For pausing-the-game feature by Minghua Liu
+toPause = True
+
 while not finished:
 
 	#blank screen
@@ -236,6 +242,20 @@ while not finished:
 	if key_state[K_SPACE]:
 		player.jump(jump_speed)	
 		
+	# --------------Pausing-the-game feature; by Minghua Liu start---------------
+	if key_state[K_p]:
+		while toPause:
+			for event in pygame.event.get():
+				if event.type == QUIT:
+					finished = True
+			key_state = pygame.key.get_pressed()
+			if key_state[K_c]:
+				print("I'm in second p")
+				break
+			time.sleep(.1)
+		
+	# --------------Pausing-the-game feature; by Minghua Liu end---------------
+	
 	#this is gravity affecting the player
 	player.move_y()
 
