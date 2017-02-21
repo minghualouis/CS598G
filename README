@@ -1,12 +1,28 @@
-This is the warm-up exercise of CS598G Embedded system
+This is the warm-up exercise of CS598G Embedded System, at Hood College in Frederick MD, Spring 2017.
 
-Remeber to create 3 individual branches so that your work won't contaminate others'.
+The code is an adatation of Alex Bradbury & Ben Everard's 
+chapter5-platformer.py code, provided for use with their book:
+Learning Python with Rasphberry Pi:
+The text is original code is available for download at:
+http://www.wiley.com/WileyCDA/WileyTitle/productCd-1118717058.html
 
-At the end of your feature development, pull all the the code in the remote repo and merge yours to it. Then you are good to merge your branch to master.
+This program was made for an assingmnet wherein we were required to make changes
+to the original code: these changes are detailed below:
 
------------------pause-the-game feature by Minghua Liu--------------------
-Usage: 
-    1. After the game start, click 'p' will pause the game
-    2. During the game is put on hold, click 'c' to continue the game
-    
------------------pause-the-game feature by Minghua Liu--------------------
+1) multiple levels, the code was adataped to support additional levels, and currently now 
+has 2 instead of just 1.
+
+2) pausing, the code has been updated to support pausing the game by pressing the 'p' button
+and resuming by pressing the 'c' button.
+
+3) invincibility buttons: buttons have been added to the game, and when the player steps one,
+they become invincible to the falling fireballs for a duration of time.
+
+4) images, the fireballs have been animated so they cycle through multiple images and appear to flicker,
+ lidia (the player character) when invincible changes her color scheme, the second level features a different
+ background image than the first level.
+
+Images and Sounds were sourced from OpemGameArt.org, see the Attributions file for
+ specifics on how each image/sound clip was made availble, also attached are the liscenses of each
+ image/sound clip.
+ 
