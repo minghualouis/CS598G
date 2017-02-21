@@ -5,6 +5,7 @@ import sys
 import time
 from threading import Thread
 
+
 class Player(pygame.sprite.Sprite):
     '''The class that holds the main player, and controls how they jump.
     nb. The player doens't move left or right, the world moves around them'''
@@ -14,14 +15,14 @@ class Player(pygame.sprite.Sprite):
         self.images = []
         for i in range(len(player_images)):
             self.images.append(pygame.transform.scale(pygame.image.load(player_images[i]), (width, height)))
-        self.image=self.images[0]
+        self.image = self.images[0]
         self.rect = self.image.get_rect()
         self.rect.x = start_x
         self.rect.y = start_y
         self.speed_y = 0
         self.base = pygame.Rect(start_x, start_y + height, width, 2)
         self.sound = pygame.mixer.Sound(jump_sound)
-        self.invincible=False
+        self.invincible = False
 
     def move_y(self):
         '''this calculates the y-axis movement for the player in the current speed'''
@@ -46,7 +47,8 @@ class Player(pygame.sprite.Sprite):
         if yes:
             self.image = self.images[1]
         else:
-            self.image=self.images[0]
+            self.image = self.images[0]
+
 
 class World():
     '''This will hold the platforms and the goal.
@@ -97,6 +99,7 @@ class World():
         for block in self.goals:
             pygame.draw.rect(screen, self.colour_goals, block, 0)
 
+
 class Doom():
     '''this class holds all the things that can kill the player'''
 
@@ -138,15 +141,15 @@ class Doom():
             fireball.step = (fireball.step + 1) % 4
 
 
-
 class Fireball(pygame.sprite.Sprite):
     '''this class holds the fireballs that fall from the sky'''
 
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.images=[]
-        for i in range (4):
-            self.images.append(pygame.transform.scale(pygame.image.load(fireball_images[i]), (fireball_size, fireball_size)))
+        self.images = []
+        for i in range(4):
+            self.images.append(
+                pygame.transform.scale(pygame.image.load(fireball_images[i]), (fireball_size, fireball_size)))
         self.rect = self.images[0].get_rect()
         self.reset()
         self.step = randint(0, 3)
@@ -175,15 +178,15 @@ class Fireball(pygame.sprite.Sprite):
         if self.rect.y > screen_y:
             self.reset()
 
+
 class Button(pygame.sprite.Sprite):
-
-    def __init__(self, start_x, start_y, color):
+    def __init__(self, color, start_x=0, start_y=0, ):
         pygame.sprite.Sprite.__init__(self)
-        self.start_x=start_x
-        self.start_y=start_y
-        self.images=[]
+        self.start_x = start_x
+        self.start_y = start_y
+        self.images = []
 
-        for i in range (2):
+        for i in range(2):
             self.images.append(pygame.transform.scale(pygame.image.load(color[i]), (fireball_size, fireball_size)))
 
         self.rect = self.images[0].get_rect()
@@ -193,15 +196,20 @@ class Button(pygame.sprite.Sprite):
     def reset(self):
         '''re-generate the fireball a random distance along the screen and give them a random speed'''
         self.y = self.start_y
-        self.speed_y =0
+        self.speed_y = 0
         self.x = self.start_x
         self.rect.topleft = self.x, self.y
-        self.image=self.images[0]
+        self.image = self.images[0]
+
+    def reset_location(self, pt):
+        self.start_x = pt[0]
+        self.start_y = pt[1]
+        self.reset()
 
     def press(self, player):
         if player.invincible:
             return
-        thread = Thread(target = self.waitToRelease)
+        thread = Thread(target=self.waitToRelease)
         thread.start()
 
     def waitToRelease(self):
@@ -210,10 +218,10 @@ class Button(pygame.sprite.Sprite):
         print("invincible")
         time.sleep(invincibility_time)
         player.turnInvincible(False)
-        self.image=self.images[0]
+        self.image = self.images[0]
         print("vincible again!")
 
-    def collided(self,player):
+    def collided(self, player):
         return self.rect.colliderect(player)
 
     def move(self, dist):
@@ -224,13 +232,14 @@ class Button(pygame.sprite.Sprite):
 
 
 def add_prefix_to_list(prefix, add_to):
-    add_to = [prefix+'{0}'.format(i) for i in add_to]
+    add_to = [prefix + '{0}'.format(i) for i in add_to]
     return add_to
+
 
 ##########OPTIONS###########
 screen_x = 600
 screen_y = 400
-invincibility_time=5
+invincibility_time = 5
 fireball_size = 30
 fireball_number = 10
 game_name = "Awesome Raspberry Pi Platformer"
@@ -241,37 +250,37 @@ jump_speed = -10
 fireball_low_speed = 3
 fireball_high_speed = 7
 
+# updated resource management; Chase Bonifant
 # images and sounds to load
 res = "resources/"
-image_res = res+"images/"
-sounds = res+"sounds/"
-lidia_res = image_res+"lidia/"
-background_res = image_res+"backgrounds/"
-fireball_res = image_res+"flames/"
-button_res = image_res+"buttons/"
+image_res = res + "images/"
+sounds = res + "sounds/"
+lidia_res = image_res + "lidia/"
+background_res = image_res + "backgrounds/"
+fireball_res = image_res + "flames/"
+button_res = image_res + "buttons/"
 
 player_images = ["lidia_normal.png", "lidia_super.png"]
-player_images = add_prefix_to_list(lidia_res,player_images)
+player_images = add_prefix_to_list(lidia_res, player_images)
 
-background_images = ["background.png"]
-background_images = add_prefix_to_list(background_res,background_images)
+background_images = ["background0.png", "background1.png"]
+background_images = add_prefix_to_list(background_res, background_images)
 
 fireball_images = ["flame1.png", "flame2.png", "flame3.png", "flame4.png"]
 fireball_images = add_prefix_to_list(fireball_res, fireball_images)
 
 yellow_buttons = ["yel_dep.png", "yel_pre.png"]
-yellow_buttons =  add_prefix_to_list(button_res, yellow_buttons)
+yellow_buttons = add_prefix_to_list(button_res, yellow_buttons)
 
 red_buttons = ["red_dep.png", "red_pre.png"]
-red_buttons = add_prefix_to_list(button_res,red_buttons)
+red_buttons = add_prefix_to_list(button_res, red_buttons)
 
 green_buttons = ["green_dep.png", "green_pre.png"]
 green_buttons = add_prefix_to_list(button_res, green_buttons)
 
-jump_sound = sounds+"qubodup-cfork-ccby3-jump.ogg"
+jump_sound = sounds + "qubodup-cfork-ccby3-jump.ogg"
 
-
-level = [
+levels = [[
     "                              ",
     "                              ",
     "                              ",
@@ -282,6 +291,17 @@ level = [
     "          ---                G",
     "     -- --    ---       ------",
     " -- -            -------      "]
+    , [
+        "                              ",
+        "                              ",
+        "                             G",
+        "                             -",
+        "                            --",
+        "                           ---",
+        "           -              ----",
+        "       -  ---            -----",
+        "     -----    ---  --   ------",
+        " -- -            ----- -      "]]
 platform_colour = (100, 100, 100)
 goal_colour = (0, 0, 255)
 doom_colour = (255, 0, 0)
@@ -302,26 +322,29 @@ if len(sys.argv) > 1:
     with open(sys.argv[1]) as f:
         level = f.readlines()
 
+level = 0
 # initialise variables
 player = Player(player_spawn_x, player_spawn_y, 20, 30)
-world = World(level, 30, platform_colour, goal_colour)
+world = World(levels[level], 30, platform_colour, goal_colour)
 doom = Doom(fireball_number, 10, doom_colour)
-buttons =[Button(180,212, yellow_buttons), Button(475, 212,red_buttons), Button(850,212,green_buttons)]
+button_locations = [[(180, 212), (475, 212), (850, 212)], [(180, 212), (475, 212), (850, 212)]]
+buttons = [Button(yellow_buttons), Button(red_buttons), Button(green_buttons)]
+for i in range(len(buttons)):
+    buttons[i].reset_location(button_locations[level][i])
 
 finished = False
 clock = pygame.time.Clock()
 player_plain = pygame.sprite.RenderPlain(player)
 button_plain = pygame.sprite.RenderPlain(buttons)
-background = pygame.transform.scale(pygame.image.load(background_images[0]), (screen_x, screen_y)).convert()
+background = pygame.transform.scale(pygame.image.load(background_images[level]), (screen_x, screen_y)).convert()
 bg_1_x = -100
 bg_2_x = screen_x - 100
 
 # For pausing-the-game feature by Minghua Liu
 toPause = True
-
 while not finished:
 
- # blank screen
+    # blank screen
     screen.fill((0, 0, 0))
 
     # check events
@@ -355,21 +378,21 @@ while not finished:
 
     if key_state[K_SPACE]:
         player.jump(jump_speed)
-	
-	# --------------Pausing-the-game feature; by Minghua Liu start---------------
-	if key_state[K_p]:
-		while toPause:
-			for event in pygame.event.get():
-				if event.type == QUIT:
-					finished = True
-			key_state = pygame.key.get_pressed()
-			if key_state[K_c]:
-				print("I'm in second p")
-				break
-			time.sleep(.1)
-		
-	# --------------Pausing-the-game feature; by Minghua Liu end---------------
-	
+
+    # --------------Pausing-the-game feature; by Minghua Liu start---------------
+    if key_state[K_p]:
+        while toPause:
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    finished = True
+            key_state = pygame.key.get_pressed()
+            if key_state[K_c]:
+                print("I'm in second p")
+                break
+            time.sleep(.1)
+
+            # --------------Pausing-the-game feature; by Minghua Liu end---------------
+
     # this is gravity affecting the player
     player.move_y()
 
@@ -389,17 +412,27 @@ while not finished:
     if doom.collided(player.rect):
         print("You Lose!")
         finished = True
-	
-	# check invincibility
+
+    # check invincibility; by Chase Bonifant
     for b in button_plain:
         if b.collided(player.rect):
             b.press(player)
+    #
 
     # check goal
     if world.at_goal(player.rect):
-        print("Winner!")
-        finished = True
-
+        if level is len(levels) - 1:
+            print("Winner!")
+            finished = True
+        else:
+            level += 1
+            world = World(levels[level], 30, platform_colour, goal_colour)
+            player = Player(player_spawn_x, player_spawn_y, 20, 30)
+            background = pygame.transform.scale(pygame.image.load(background_images[level]),
+                                                (screen_x, screen_y)).convert()
+            player_plain = pygame.sprite.RenderPlain(player)
+            for i in range(len(buttons)):
+                buttons[i].reset_location(button_locations[level][i])
     # set the speed
     clock.tick(20)
 
