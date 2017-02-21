@@ -391,7 +391,7 @@ while not finished:
                 break
             time.sleep(.1)
 
-            # --------------Pausing-the-game feature; by Minghua Liu end---------------
+    # --------------Pausing-the-game feature; by Minghua Liu end---------------
 
     # this is gravity affecting the player
     player.move_y()
