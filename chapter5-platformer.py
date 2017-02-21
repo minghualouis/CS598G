@@ -159,6 +159,18 @@ player_image = "lidia.png"
 background_image = "background.png"
 jump_sound = "qubodup-cfork-ccby3-jump.ogg"
 fireball_image = "flame.png"
+level2=[
+	"                              ",
+	"                              ",
+	"                              ",
+	"                              ",
+	"                              ",
+	"                              ",
+	"                              ",
+	"         G---                G",
+	"     -- --    ---       ------",
+	" -- -            -------      "]
+ 
 level=[
 	"                              ",
 	"                              ",
@@ -167,8 +179,8 @@ level=[
 	"                              ",
 	"                              ",
 	"                              ",
-	"          ---                G",
-	"     -- --    ---       ------",
+	"           ---  ---          G",
+	"     G- -               --   --",
 	" -- -            -------      "]
 platform_colour = (100,100,100)
 goal_colour = (0,0,255)
@@ -196,6 +208,7 @@ player = Player(player_spawn_x, player_spawn_y, 20, 30)
 world = World(level, 30, platform_colour,goal_colour )
 doom = Doom(fireball_number,10, doom_colour)
 finished = False
+curr_level = 1
 clock = pygame.time.Clock()
 player_plain = pygame.sprite.RenderPlain(player)
 
@@ -254,8 +267,16 @@ while not finished:
 
 	#check goal
 	if world.at_goal(player.rect):
-		print("Winner!")
-		finished = True
+         if(curr_level == 2):
+             print("Winner!")
+             finished = True
+         else:
+            curr_level = 2
+            player = Player(player_spawn_x, player_spawn_y, 20, 30)
+            world = World(level2, 30, platform_colour,goal_colour )
+            doom = Doom(fireball_number,10, doom_colour)
+            clock = pygame.time.Clock()
+            player_plain = pygame.sprite.RenderPlain(player)
 
 	#set the speed
 	clock.tick(20)
