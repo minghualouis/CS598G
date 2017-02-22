@@ -249,43 +249,6 @@ gravity = 1
 jump_speed = -10
 fireball_low_speed = 3
 fireball_high_speed = 7
-<<<<<<< HEAD
-player_image = "lidia.png"
-background_image = "background.png"
-jump_sound = "qubodup-cfork-ccby3-jump.ogg"
-fireball_image = "flame.png"
-level2=[
-	"                              ",
-	"                              ",
-	"                              ",
-	"                              ",
-	"                              ",
-	"                              ",
-	"                              ",
-	"         G---                G",
-	"     -- --    ---       ------",
-	" -- -            -------      "]
- 
-level=[
-	"                              ",
-	"                              ",
-	"                              ",
-	"                              ",
-	"                              ",
-	"                              ",
-	"                              ",
-	"           ---  ---          G",
-	"     G- -               --   --",
-	" -- -            -------      "]
-platform_colour = (100,100,100)
-goal_colour = (0,0,255)
-doom_colour = (255,0,0)
-
-#initialise pygame.mixer
-pygame.mixer.pre_init(44100,-16,8,2048)
-pygame.mixer.init()
-=======
->>>>>>> origin/master
 
 # updated resource management; Chase Bonifant
 # images and sounds to load
@@ -381,73 +344,6 @@ bg_2_x = screen_x - 100
 # For pausing-the-game feature by Minghua Liu
 toPause = True
 while not finished:
-
-<<<<<<< HEAD
-	#blank screen
-	screen.fill((0,0,0))
-
-	#check events
-	for event in pygame.event.get():
-		if event.type == QUIT:
-			finished = True
-	#check which keys are held
-	key_state = pygame.key.get_pressed()
-	if key_state[K_LEFT]:
-		world.move(2)
-		doom.move(2)
-		bg_1_x = bg_1_x + 1
-		bg_2_x = bg_2_x + 1
-		if bg_1_x > screen_x:
-			bg_1_x = -screen_x
-		if bg_2_x > screen_x:
-			bg_2_x = -screen_x
-	elif key_state[K_RIGHT]:
-		world.move(-2)
-		doom.move(-2)
-		bg_1_x = bg_1_x - 1
-		bg_2_x = bg_2_x - 1
-		if bg_1_x < -screen_x:
-			bg_1_x = screen_x
-		if bg_2_x < -screen_x:
-			bg_2_x = screen_x
-
-	if key_state[K_SPACE]:
-		player.jump(jump_speed)	
-		
-	#this is gravity affecting the player
-	player.move_y()
-
-	#render the frame
-	screen.blit(background,(bg_1_x, 0))
-	screen.blit(background,(bg_2_x, 0))
-	player_plain.draw(screen)
-	world.update(screen)
-	doom.update(screen)
-	pygame.display.update()
-
-	#check doom
-	if doom.collided(player.rect):
-		print("You Lose!")
-		finished = True
-
-	#check goal
-	if world.at_goal(player.rect):
-         if(curr_level == 2):
-             print("Winner!")
-             finished = True
-         else:
-            curr_level = 2
-            player = Player(player_spawn_x, player_spawn_y, 20, 30)
-            world = World(level2, 30, platform_colour,goal_colour )
-            doom = Doom(fireball_number,10, doom_colour)
-            clock = pygame.time.Clock()
-            player_plain = pygame.sprite.RenderPlain(player)
-
-	#set the speed
-	clock.tick(20)
-
-#uncomment to see how it's running
-=======
     # blank screen
     screen.fill((0, 0, 0))
 
@@ -541,5 +437,4 @@ while not finished:
     clock.tick(20)
 
 # uncomment to see how it's running
->>>>>>> origin/master
 #	print(clock.get_fps())
