@@ -47,10 +47,11 @@ ninja_male_prefix = characters_res + "ninja_m/ninja_m-"
 ninja_female_prefix = characters_res + "ninja_f/ninja_f-"
 ranger_male_prefix = characters_res + "ranger_m/ranger_m-"
 ranger_female_prefix = characters_res + "ranger_f/ranger_f-"
-townfolk_male_prefix = characters_res + "townfolk_m/townfolk_m-"
-townfolk_female_prefix = characters_res + "townfolk_f/townfolk_f-"
+townfolk_male_prefix = characters_res + "townfolk_m/townfolk1_m-"
+townfolk_female_prefix = characters_res + "townfolk_f/townfolk1_f-"
 warrior_male_prefix = characters_res + "warrior_m/warrior_m-"
 warrior_female_prefix = characters_res + "warrior_f/warrior_f-"
+
 
 def make_player_map(player_prefix):
     player_map = {}
@@ -60,8 +61,9 @@ def make_player_map(player_prefix):
     player_map['left'] = add_prefix_to_list(player_prefix, right_images)
     return player_map
 
+
 healer_male = make_player_map(healer_male_prefix)
-healer_male = make_player_map(healer_female_prefix)
+healer_female = make_player_map(healer_female_prefix)
 mage_female = make_player_map(mage_female_prefix)
 mage_male = make_player_map(mage_male_prefix)
 ninja_female = make_player_map(ninja_female_prefix)
@@ -73,4 +75,8 @@ townfolk_male = make_player_map(townfolk_male_prefix)
 warrior_female = make_player_map(warrior_female_prefix)
 warrior_male = make_player_map(warrior_male_prefix)
 
-blank = image_res+"blank.png"
+blank = image_res + "blank.png"
+
+players = [healer_female, healer_male, mage_female, mage_male, ninja_female, ninja_male, ranger_female,
+           ranger_male, townfolk_female, townfolk_male, warrior_female, warrior_male]
+print(players)
