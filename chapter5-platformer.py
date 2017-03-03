@@ -2,7 +2,6 @@ import pygame
 from pygame.locals import *
 import sys
 import time
-
 from world import World
 from player import Player
 from tileset import TileMap
@@ -145,7 +144,6 @@ for player_num in range(len(players)):
         player_plain.draw(screen)
 
         pygame.display.update()
-
         # check doom
         if doom.collided(player):
             print("You Lose!")
