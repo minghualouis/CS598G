@@ -8,15 +8,11 @@ res = "resources/"
 image_res = res + "images/"
 characters_res = image_res + "characters/"
 sounds = res + "sounds/"
-lidia_res = characters_res + "lidia/"
 background_res = image_res + "backgrounds/"
 
 object_res = image_res + "objects/"
 fireball_res = object_res + "flames/"
 button_res = object_res + "buttons/"
-
-player_images = ["lidia_normal.png", "lidia_super.png"]
-player_images = add_prefix_to_list(lidia_res, player_images)
 
 background_images = ["background0.png", "background1.png"]
 background_images = add_prefix_to_list(background_res, background_images)
