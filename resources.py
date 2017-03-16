@@ -4,11 +4,25 @@ from util import *
 ######## RESOURCES #########
 ############################
 
-res = "resources/"
+res = "./resources/"
+
+############## SOUND #######
+sounds = res + "sounds/"
+jump_sound = sounds + "qubodup-cfork-ccby3-jump.ogg"
+
+############## IMAGE ########
 image_res = res + "images/"
 characters_res = image_res + "characters/"
-sounds = res + "sounds/"
+
 background_res = image_res + "backgrounds/"
+
+world_tiles_res = image_res + "WorldTiles/"
+
+dungeon_tiles_res = world_tiles_res + "DungeonTiles/"
+dungeon_dict = dungeon_tiles_res + "dungeon_set.txt"
+
+magecity_tiles_res = world_tiles_res + "MagecityTiles/"
+magecity_dict = magecity_tiles_res + "magecity.txt"
 
 object_res = image_res + "objects/"
 fireball_res = object_res + "flames/"
@@ -29,7 +43,6 @@ red_buttons = add_prefix_to_list(button_res, red_buttons)
 green_buttons = ["green_dep.png", "green_pre.png"]
 green_buttons = add_prefix_to_list(button_res, green_buttons)
 
-jump_sound = sounds + "qubodup-cfork-ccby3-jump.ogg"
 up_images = ["0-0.png", "1-0.png", "2-0.png"]
 down_images = ["0-1.png", "1-1.png", "2-1.png"]
 left_images = ["0-2.png", "1-2.png", "2-2.png"]
@@ -75,4 +88,20 @@ blank = image_res + "blank.png"
 
 players = [healer_female, healer_male, mage_female, mage_male, ninja_female, ninja_male, ranger_female,
            ranger_male, townfolk_female, townfolk_male, warrior_female, warrior_male]
-print(players)
+
+explosion = object_res + "bomb/"
+explosion1 = explosion + "BombExploding-07-00.png"
+explosion2 = explosion + "BombExploding-08-00.png"
+explosion3 = explosion + "BombExploding-09-00.png"
+explosion4 = explosion + "BombExploding-10-00.png"
+explosion5 = explosion + "BombExploding-11-00.png"
+explosion6 = explosion + "BombExploding-12-00.png"
+
+other_res = object_res+"other/"
+flicker1 = other_res+"2153.png"
+flicker2 = other_res+"2154.png"
+flicker3 = other_res+"2155.png"
+flicker4 = other_res+"2287.png"
+flicker5 = other_res+"2288.png"
+
+

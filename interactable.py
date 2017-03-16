@@ -12,14 +12,21 @@ class Interactable(pygame.sprite.Sprite):
         :return:
         """
 
-class Interactables():
 
+class Interactables(object):
     def __init__(self):
         self.things = []
+
+    def __getitem__(self, item):
+        return self.things[item]
 
     def append(self, thing):
         self.things.append(thing)
 
-    def move_ip(self,x,y):
+    def move_ip(self, x, y):
         for thing in self.things:
-            thing.rect.move_ip(x,y)
+            print thing
+            thing.rect.move_ip(x, y)
+
+    def __iter__(self):
+        return iter(self.things)
