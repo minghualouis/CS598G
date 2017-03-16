@@ -3,13 +3,11 @@ from threading import Thread
 import pygame
 import time
 
-
-invincibility_time=5
+invincibility_time = 5
 button_size = 30
 
 
 class Button(Interactable):
-
     def __init__(self, color, start_x=0, start_y=0, ):
         pygame.sprite.Sprite.__init__(self)
         self.start_x = start_x
@@ -22,6 +20,7 @@ class Button(Interactable):
         self.rect = self.images[0].get_rect()
         self.reset()
         self.image = self.images[0]
+        self.renderer = pygame.sprite.RenderPlain(self)
 
     def reset(self):
         '''re-generate the fireball a random distance along the screen and give them a random speed'''
@@ -51,7 +50,6 @@ class Button(Interactable):
         self.image = self.images[0]
         print("vincible again!")
 
-
     def collided(self, player):
         return self.rect.colliderect(player)
 
@@ -61,5 +59,9 @@ class Button(Interactable):
         they regenerate'''
         self.rect.move_ip(x, y)
 
-    def interact(self,player):
+    def interact(self, player):
         self.press(player)
+
+    def update(self, screen, player):
+        if self.collided(player):
+            self.press(player)
