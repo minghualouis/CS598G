@@ -165,7 +165,7 @@ for player_num in range(len(players)):
             screen.blit(label1, (0, screen_y / 2))
             screen.blit(label2, (0, screen_y / 2 + 50))
             screen.blit(label3, (0, screen_y / 2 + 100))
-            print "Game Over: Score: " + str(score)
+            print("Game Over: Score: " + str(score))
             if player.done_dying():
                 finished = True
         else:
@@ -200,4 +200,4 @@ for player_num in range(len(players)):
         if not player.invincible and not player.is_dead():
             time_steps += 1
             score += player.health * time_steps
-        print "Fireball count: "+ str(len(doom.fireballs))
+        print("Fireball count: "+ str(len(doom.fireballs)))

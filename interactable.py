@@ -25,7 +25,7 @@ class Interactables(object):
 
     def move_ip(self, x, y):
         for thing in self.things:
-            print thing
+            print(thing)
             thing.rect.move_ip(x, y)
 
     def __iter__(self):
